@@ -309,13 +309,13 @@ void maximum_vehicle_speed(){
 }
 
 int main(int argc, char **argv){
-    /* maximum_number_of_three_entered();
+    maximum_number_of_three_entered();
     calculate_the_value_of_the_function();
     number_a_multiple();
     purchase_price_including_discount();
     verification_foundation_of_Petersburg();
     determining_the_parity_of_number();
-    weight_change_recommendation(); */
+    weight_change_recommendation();
     weekday();
     card_from_the_deck();
     maximum_vehicle_speed();
