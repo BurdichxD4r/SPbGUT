@@ -7,19 +7,23 @@
 
 int maximum_number_of_three_entered(){
     using namespace std;
+    cout << "Задание 1 (поиск максимума из трёх чисел)" << endl;
     int a, b, c;
+    cout << "Введите первое число -> ";
     cin >> a;
+    cout << "Введите второе число -> ";
     cin >> b;
+    cout << "Введите третье число -> ";
     cin >> c;
     int __flag = 0;
     if (a - b >= __flag && a - c >= __flag){
-        cout << a;
+        cout << a << endl;
         return a;
     }else if (b - c >= __flag){
-        cout << b;
+        cout << b << endl;
         return b;
     }else{
-        cout << c;
+        cout << c << endl;
         return c;
     }
 }
@@ -31,7 +35,9 @@ int maximum_number_of_three_entered(){
 
 int calculate_the_value_of_the_function(){
     using namespace std;
+    cout << "Задание 2 (вычисление значения функции y = f(x))" << endl;
     int x;
+    cout << "Введите значение x -> ";
     cin >> x;
     if (x > 0){
         cout << "y = " << 2 * x - 10 << endl;
@@ -40,7 +46,7 @@ int calculate_the_value_of_the_function(){
         cout << "y = " << 2 * (-x) - 1 << endl;
         return 2 * (-x) - 1;
     }else{
-        cout << "y =  0";
+        cout << "y =  0" << endl;
         return 0;
     }
 }
@@ -50,8 +56,11 @@ int calculate_the_value_of_the_function(){
 
 int number_a_multiple(){
     using namespace std;
+    cout << "Задание 3 (определить является ли число N кратным числу K)" << endl;
     int N, K;
+    cout << "Введите число N -> ";
     cin >> N;
+    cout << "Введите число K -> ";
     cin >> K;
     if (N % K == 0){
         cout << N << " является кратным числу " << K << endl;
@@ -68,6 +77,7 @@ int number_a_multiple(){
 
 int purchase_price_including_discount(){
     using namespace std;
+    cout << "Задание 4.1" << endl;
     cout << "Вычисление стоимости покупки с учетом скидки:" << endl;
     int purchase_amount;
     cout << "Введите сумму покупки и нажмите <Enter> -> ";
@@ -101,6 +111,7 @@ int purchase_price_including_discount(){
 
 int verification_foundation_of_Petersburg(){
     using namespace std;
+    cout << "Задание 4.2" << endl;
     cout << "В каком году был основан Санкт-Петербург?" << endl;
     int date_of_foundation_of_the_city = 1703;
     int user_response;
@@ -119,6 +130,7 @@ int verification_foundation_of_Petersburg(){
 
 int determining_the_parity_of_number(){
     using namespace std;
+    cout << "Задача 5" << endl;
     cout << "Проверка чётности числа" << endl;
     int user_number;
     cout << "Введите число -> ";
@@ -147,6 +159,7 @@ int calculating_the_optimal_weight(){
 }
 int weight_change_recommendation(){
     using namespace std;
+    cout << "Задача 6" << endl;
     int weight;
     cout << "Введите свой нынешний вес -> ";
     cin >> weight;
@@ -170,5 +183,11 @@ int weight_change_recommendation(){
 
 int main(){
     maximum_number_of_three_entered();
+    calculate_the_value_of_the_function();
+    number_a_multiple();
+    purchase_price_including_discount();
+    verification_foundation_of_Petersburg();
+    determining_the_parity_of_number();
+    weight_change_recommendation();
     return 0;
 }
