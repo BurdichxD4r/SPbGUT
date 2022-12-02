@@ -7,20 +7,18 @@
 
 int maximum_number_of_three_entered(){
     using namespace std;
-    int a = cin >> a;
-    int b = cin >> b;
-    int c = cin >> c;
+    int a, b, c;
+    cin >> a;
+    cin >> b;
+    cin >> c;
     int __flag = 0;
-    if a - b >= __flag and a - c >= __flag{
+    if (a - b >= __flag && a - c >= __flag){
         cout << a;
         return a;
-    }
-    else if b - c >= __flag{
+    }else if (b - c >= __flag){
         cout << b;
         return b;
-    }
-    else
-    {
+    }else{
         cout << c;
         return c;
     }
@@ -33,16 +31,15 @@ int maximum_number_of_three_entered(){
 
 int calculate_the_value_of_the_function(){
     using namespace std;
-    int x = cin >> x;
-    if x > 0{
+    int x;
+    cin >> x;
+    if (x > 0){
         cout << "y = " << 2 * x - 10 << endl;
-        return 2 * x - 10
-    }
-    else if x < 0{
+        return 2 * x - 10;
+    }else if (x < 0){
         cout << "y = " << 2 * (-x) - 1 << endl;
         return 2 * (-x) - 1;
-    }
-    else{
+    }else{
         cout << "y =  0";
         return 0;
     }
@@ -53,9 +50,10 @@ int calculate_the_value_of_the_function(){
 
 int number_a_multiple(){
     using namespace std;
-    int N = cin >> N;
-    int K = cin >> K;
-    if N % K == 0{
+    int N, K;
+    cin >> N;
+    cin >> K;
+    if (N % K == 0){
         cout << N << " является кратным числу " << K << endl;
         return 1;
     }else{
@@ -71,20 +69,22 @@ int number_a_multiple(){
 int purchase_price_including_discount(){
     using namespace std;
     cout << "Вычисление стоимости покупки с учетом скидки:" << endl;
-    int purchase_amount = cin >> "Введите сумму покупки и нажмите <Enter> -> " >> purchase_amount;
-    if purchase_amount < 0{
+    int purchase_amount;
+    cout << "Введите сумму покупки и нажмите <Enter> -> ";
+    cin >> purchase_amount;
+    if (purchase_amount < 0){
         cout << "Не пытайтесь нас обмануть!" << endl;
-        return 0
+        return 0;
     }
-    float first_class_discount = 0.03
-    float second_class_discount = 0.05
-    int beginning_first_category = 500 // руб.
-    int beginning_second_category = 1000 // руб.
-    if beginning_second_category >= purchase_amount > beginning_first_category{
+    float first_class_discount = 0.03;
+    float second_class_discount = 0.05;
+    int beginning_first_category = 500; // руб.
+    int beginning_second_category = 1000; // руб.
+    if (beginning_second_category >= purchase_amount > beginning_first_category){
         cout << "Вам предоставляется скидка " << first_class_discount * 100 << "%" << endl;
         cout << "Сумма с учетом скидки: " << purchase_amount - (purchase_amount * first_class_discount) << " руб." << endl;
         return purchase_amount - (purchase_amount * first_class_discount);
-    }else if purchase_amount > beginning_second_category{
+    }else if (purchase_amount > beginning_second_category){
         cout << "Вам предоставляется скидка " << second_class_discount * 100 << "%" << endl;
         cout << "Сумма с учетом скидки: " << purchase_amount - (purchase_amount * second_class_discount) << " руб." << endl;
         return purchase_amount - (purchase_amount * second_class_discount);
@@ -103,8 +103,9 @@ int verification_foundation_of_Petersburg(){
     using namespace std;
     cout << "В каком году был основан Санкт-Петербург?" << endl;
     int date_of_foundation_of_the_city = 1703;
-    int user_response = cin >> user_response;
-    if user_response == date_of_foundation_of_the_city{
+    int user_response;
+    cin >> user_response;
+    if (user_response == date_of_foundation_of_the_city){
         cout << "Вы ответили верно!" << endl;
         return 1;
     }else{
@@ -119,8 +120,10 @@ int verification_foundation_of_Petersburg(){
 int determining_the_parity_of_number(){
     using namespace std;
     cout << "Проверка чётности числа" << endl;
-    int user_number = cin >> "Введите число -> " >> user_number;
-    if user_number % 2 == 0{
+    int user_number;
+    cout << "Введите число -> ";
+    cin >> user_number;
+    if (user_number % 2 == 0){
         cout << "Число " << user_number << " чётное" << endl;
         return 1;
     }else{
@@ -136,19 +139,22 @@ int determining_the_parity_of_number(){
 
 int calculating_the_optimal_weight(){
     using namespace std;
-    int height = cin >> "Введите свой нынешний рост -> " >> height;
+    int height;
+    cout << "Введите свой нынешний рост -> ";
+    cin >> height;
     int formula_calculating_the_optimal_weight = height - 100;
     return formula_calculating_the_optimal_weight;
 }
-
 int weight_change_recommendation(){
     using namespace std;
-    int weight = cin >> "Введите свой нынешний вес -> " >> weight;
+    int weight;
+    cout << "Введите свой нынешний вес -> ";
+    cin >> weight;
     int optimal_weight = calculating_the_optimal_weight();
-    if weight > optimal_weight{
+    if (weight > optimal_weight){
         cout << "Вам не помешало бы слегка сбросить вес (на " << weight - optimal_weight << " кг)" << endl;
         return 1;
-    }else if weight < optimal_weight{
+    }else if (weight < optimal_weight){
         cout << "Вам не помешало бы слегка набрать вес (на " << optimal_weight - weight << " кг)" << endl;
         return -1;
     }else{
@@ -162,13 +168,7 @@ int weight_change_recommendation(){
 
 
 
-void main(){
+int main(){
     maximum_number_of_three_entered();
-    calculate_the_value_of_the_function();
-    number_a_multiple();
-    purchase_price_including_discount();
-    verification_foundation_of_Petersburg();
-    determining_the_parity_of_number();
-    weight_change_recommendation();
     return 0;
 }
