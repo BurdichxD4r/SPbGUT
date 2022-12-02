@@ -181,7 +181,80 @@ int weight_change_recommendation(){
 // todo: Задачи на switch
 // Дан порядковый номер дня недели, вывести на экран его название
 
+int weekday(){
+    using namespace std;
+    cout << "Задача на switch 1" << endl;
+    int day_of_the_week;
+    cout << "Введите день недели -> ";
+    cin >> day_of_the_week;
+    switch (day_of_the_week){
+        case 1:
+            cout >> "Понедельник" >> endl;
+            break;
+        case 2:
+            cout >> "Вторник" >> endl;
+            break;
+        case 3:
+            cout >> "Среда" >> endl;
+            break;
+        case 4:
+            cout >> "Четверг" >> endl;
+            break;
+        case 5:
+            cout >> "Пятница" >> endl;
+            break;
+        case 6:
+            cout >> "Субота" >> endl;
+            break;
+        case 7:
+            cout >> "Воскресенье" >> endl;
+            break;
+        default:
+            cout >> "Error! Bad input!" >> endl;
+            break;
+    }
+}
 
+/* Дан порядковый номер карты от 6 до 14, определить ее достоинство. Достоинства определяются по
+следующему правилу: туз -14, король - 13, дама -12, валет -11, десятка - 10, ... , шестерка – 6 */
+
+def card_from_the_deck(dignity_of_the_card):
+    match dignity_of_the_card:
+        case 6:
+            print("Шестёрка")
+        case 7:
+            print("Семёрка")
+        case 8:
+            print("Восьмёрка")
+        case 9:
+            print("Девятка")
+        case 10:
+            print("Десятка")
+        case 11:
+            print("Валет")
+        case 12:
+            print("Дама")
+        case 13:
+            print("Король")
+        case 14:
+            print("Туз")
+
+/* Дан признак транспортного средства: а - автомобиль, в - велосипед, м - мотоцикл, с - самолет, п - поезд.
+Вывести на экран монитора максимальную скорость транспортного средства в зависимости от введенного
+признака */
+
+def maximum_vehicle_speed(transport_vehicle):
+    match transport_vehicle:
+        case "а":
+            print("У автомобиля максимальная скорость - 1230 км/ч")
+        case "в":
+            print("У велосипеда максимальная скорость - 268 км/ч")
+        case "м":
+            print("У мотоцикла максимальная скорость - 395 км/ч")
+        case "с":
+            print("У самолёта максимальная скорость - 11230 км/ч")
+        case "п":
+            print("У поезда максимальная скорость - 603 км/ч")
 
 int main(){
     /* maximum_number_of_three_entered();
@@ -191,5 +264,6 @@ int main(){
     verification_foundation_of_Petersburg();
     determining_the_parity_of_number();
     weight_change_recommendation(); */
+    weekday();
     return 0;
 }
