@@ -181,7 +181,7 @@ int weight_change_recommendation(){
 // todo: Задачи на switch
 // Дан порядковый номер дня недели, вывести на экран его название
 
-int weekday(){
+void weekday(){
     using namespace std;
     cout << "Задача на switch 1" << endl;
     int day_of_the_week;
@@ -189,28 +189,28 @@ int weekday(){
     cin >> day_of_the_week;
     switch (day_of_the_week){
         case 1:
-            cout >> "Понедельник" >> endl;
+            cout << "Понедельник" << endl;
             break;
         case 2:
-            cout >> "Вторник" >> endl;
+            cout << "Вторник" << endl;
             break;
         case 3:
-            cout >> "Среда" >> endl;
+            cout << "Среда" << endl;
             break;
         case 4:
-            cout >> "Четверг" >> endl;
+            cout << "Четверг" << endl;
             break;
         case 5:
-            cout >> "Пятница" >> endl;
+            cout << "Пятница" << endl;
             break;
         case 6:
-            cout >> "Субота" >> endl;
+            cout << "Суббота" << endl;
             break;
         case 7:
-            cout >> "Воскресенье" >> endl;
+            cout << "Воскресенье" << endl;
             break;
         default:
-            cout >> "Error! Bad input!" >> endl;
+            cout << "Error! Bad input!" << endl;
             break;
     }
 }
@@ -218,45 +218,97 @@ int weekday(){
 /* Дан порядковый номер карты от 6 до 14, определить ее достоинство. Достоинства определяются по
 следующему правилу: туз -14, король - 13, дама -12, валет -11, десятка - 10, ... , шестерка – 6 */
 
-def card_from_the_deck(dignity_of_the_card):
-    match dignity_of_the_card:
+void card_from_the_deck(){
+    using namespace std;
+    cout << "Задача на switch 2" << endl;
+    int dignity_of_the_card;
+    cout << "Введите достоинство карты -> ";
+    cin >> dignity_of_the_card;
+    switch (dignity_of_the_card){
         case 6:
-            print("Шестёрка")
+            cout << "Шестёрка" << endl;
+            break;
         case 7:
-            print("Семёрка")
+            cout << "Семёрка" << endl;
+            break;
         case 8:
-            print("Восьмёрка")
+            cout << "Восьмёрка" << endl;
+            break;
         case 9:
-            print("Девятка")
+            cout << "Девятка" << endl;
+            break;
         case 10:
-            print("Десятка")
+            cout << "Десятка" << endl;
+            break;
         case 11:
-            print("Валет")
+            cout << "Валет" << endl;
+            break;
         case 12:
-            print("Дама")
+            cout << "Дама" << endl;
+            break;
         case 13:
-            print("Король")
+            cout << "Король" << endl;
+            break;
         case 14:
-            print("Туз")
+            cout << "Туз" << endl;
+            break;
+        default:
+            cout << "Error! Bad input!" << endl;
+            break;
+    }
+}
 
 /* Дан признак транспортного средства: а - автомобиль, в - велосипед, м - мотоцикл, с - самолет, п - поезд.
 Вывести на экран монитора максимальную скорость транспортного средства в зависимости от введенного
 признака */
 
-def maximum_vehicle_speed(transport_vehicle):
-    match transport_vehicle:
-        case "а":
-            print("У автомобиля максимальная скорость - 1230 км/ч")
-        case "в":
-            print("У велосипеда максимальная скорость - 268 км/ч")
-        case "м":
-            print("У мотоцикла максимальная скорость - 395 км/ч")
-        case "с":
-            print("У самолёта максимальная скорость - 11230 км/ч")
-        case "п":
-            print("У поезда максимальная скорость - 603 км/ч")
+void maximum_vehicle_speed(){
+    using namespace std;
+    cout << "Задача на switch 3" << endl;
+    char transport_vehicle_char;
+    int transport_vehicle_int;
+    cout << "Введите первую букву транспортного средства -> ";
+    cin >> transport_vehicle_char;
+    cout << transport_vehicle_char << endl;
+    /* В данном случае затруднительно воспользоваться switch-case, так как
+    конструкция switch-case в C++ поддерживает только тип int. Так же я не понимаю
+    как сделать так, чтобы cin воспринимал русские символы */
+    if (transport_vehicle_char == 'c'){
+        transport_vehicle_int = 1;
+    }else if (transport_vehicle_char == 'b'){
+        transport_vehicle_int = 2;
+    }else if (transport_vehicle_char == 'm'){
+        transport_vehicle_int = 3;
+    }else if (transport_vehicle_char == 'p'){
+        transport_vehicle_int = 4;
+    }else if (transport_vehicle_char == 't'){
+        transport_vehicle_int = 5;
+    }else{
+        transport_vehicle_char = 0;
+    }
+    switch (transport_vehicle_int){
+        case 1:
+            cout << "У автомобиля максимальная скорость - 1230 км/ч" << endl;
+            break;
+        case 2:
+            cout << "У велосипеда максимальная скорость - 268 км/ч" << endl;
+            break;
+        case 3:
+            cout << "У мотоцикла максимальная скорость - 395 км/ч" << endl;
+            break;
+        case 4:
+            cout << "У самолёта максимальная скорость - 11230 км/ч" << endl;
+            break;
+        case 5:
+            cout << "У поезда максимальная скорость - 603 км/ч" << endl;
+            break;
+        default:
+            cout << "Error! Bad input!" << endl;
+            break;
+    }
+}
 
-int main(){
+int main(int argc, char **argv){
     /* maximum_number_of_three_entered();
     calculate_the_value_of_the_function();
     number_a_multiple();
@@ -265,5 +317,7 @@ int main(){
     determining_the_parity_of_number();
     weight_change_recommendation(); */
     weekday();
+    card_from_the_deck();
+    maximum_vehicle_speed();
     return 0;
 }
