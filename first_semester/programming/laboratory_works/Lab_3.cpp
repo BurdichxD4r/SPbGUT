@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 
-int funtionDoWhile() {
+double funtionDoWhile() {
     std::cout << "ok" << std::endl;
     double y = 1, x = 0.38, N = 9;
     int i = 2;
@@ -13,7 +13,7 @@ int funtionDoWhile() {
     return y;
 }
 
-int funtionWhile() {
+double funtionWhile() {
     std::cout << "ok" << std::endl;
     double y = 1, x = 0.38, N = 9;
     int i = 2;
@@ -25,7 +25,7 @@ int funtionWhile() {
     return y;
 }
 
-int funtionFor() {
+double funtionFor() {
     std::cout << "ok" << std::endl;
     double y = 1, x = 0.38, N = 9;
     for (int i = 2; i <= N; i++) {
