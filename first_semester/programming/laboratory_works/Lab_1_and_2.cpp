@@ -56,7 +56,11 @@ int tabulatingFunction() {
 }
 
 int main() {
+    std::cout << "Разветвляющие вычислительные процессы\nВариант 17" << std::endl;
+    std::cout << "Вычислить значение функций y(x) и Z(V,W)" << std::endl;
     calculatingFunctionValue();
+    std::cout << "Циклические вычислительные процессы. Табулирование функции.\nВариант 17" << std::endl;
+    std::cout << "Протабулировать функцию Z(V,W) на заданном интервале в 15 равностоящих точках. Значение V выбрать самостоятельно." << std::endl;
     tabulatingFunction();
     return 0;
 }
