@@ -2,19 +2,19 @@
 #include <cmath>
 
 
-double functionY(double x, int y) {
+double functionY(double x, double y) {
     if (x <= 0.8) {
-        y = sqrt(cos(x) * cos(x) + 24) / 5;
+        y = sqrt(pow(cos(x * M_PI / 180.0), 2) + 24) / 5;
     }else{
-        y = sqrt(cos(x) * cos(x) + 24) / 2.5;
+        y = sqrt(pow(cos(x * M_PI / 180.0), 2) + 24) / 2.5;
     }
     return y;
 }
 
-double functionZ(double V, double W, int Z) {
+double functionZ(double V, double W, double Z) {
     if (W < -4) {
         Z = V + 7.5;
-    }else if (-4 <= W < 3) {
+    }else if (W >= -4 && W < 3) {
         Z = V * V - 4;
     }else{
         Z = V + 7;
@@ -22,7 +22,7 @@ double functionZ(double V, double W, int Z) {
     return Z;
 }
 
-int calculatingFunctionValue() {
+void calculatingFunctionValue() {
     std::cout << "Вычисление значения функции y(x)" << std::endl;
     double x, y, Z, V, W;
     std::cout << "Введите x => ";
@@ -38,21 +38,22 @@ int calculatingFunctionValue() {
     std::cout << std::endl;
     Z = functionZ(V, W, Z);
     std::cout << "Z = " << Z << '\n' << std::endl;
-    return 0;
 }
 
-int tabulatingFunction() {
-    double Z, V;
+void tabulatingFunction() {
+    double Z, V, W, i;
     std::cout << "Табулирование функции Z(V, W)" << std::endl;
     std::cout << "Введите V => ";
     std::cin >> V;
+    W = -7;
     // W[-7, 11]
-    for (int W = -7; W <= 11; W++) {
+    i = (11.0 + 7.0 + 1.0) / 15.0;
+    while (W <= 11){
         Z = functionZ(V, W, Z);
-        std::cout << "Z = " << Z << ", при W = " << W << std::endl; 
+        std::cout << "Z = " << Z << ", при W = " << W << std::endl;
+        W += i;
     }
     std::cout << std::endl;
-    return 0;
 }
 
 int main() {

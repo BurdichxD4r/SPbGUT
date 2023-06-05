@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <iomanip>
 
-void sumNumber(int *psum, int number){
+void sumNumber(double *psum, int number){
     (*psum) = (*psum) + number;
 }
 
@@ -14,14 +14,12 @@ int main(){
     std::cout << "Задание по варианту:" << '\n'
     << "Сумму максимального и минимального элементов массива и среднее арифметическое элементов в каждом столбце." << '\n' << std::endl;
     int N, M, **array, maxx, minn;
-    int sum= 0;
+    double sum= 0;
 
     std::cout << "Введите N >> ";
     std::cin >> N;
     std::cout << "Введите M >> ";
     std::cin >> M;
-
-    int arrColumn[N];
 
     array = new int * [N];
     for (int i = 0; i < N; i++){
@@ -52,10 +50,12 @@ int main(){
     std::cout << "Сумму максимального и минимального элементов массива (" << maxx << "; " << minn << ") >> " << minn + maxx << std::endl;
 
     for (int i = 0; i < M; i++){
+        int count = 0;
         for (int j = 0; j < N; j++){
             sumNumber(&sum, array[j][i]);
+            count++;
         }
-        std::cout << "Среднее арифметическое элементов в " << i + 1 << " столбце >> " << sum << std::endl;
+        std::cout << "Среднее арифметическое элементов в " << i + 1 << " столбце >> " << sum / count << std::endl;
         sum = 0;
     }
     
