@@ -39,10 +39,25 @@ void from_table(int n, double *pt, double *pU_in, double *pU_out){
     }
 }
 
-void parameter(int n){
-    /* double t_start = 0, t_end = 2 * M_PI, Ue = 5.0, a = 2.0, U_out1 = 10.0, b = 0.05;
-    std::cout << '\n' << "Ue = " << Ue << "\na = " << a << "\nt_start = " << t_start << "\nt_end = " << t_end << "\nU_out1 = " << U_out1 <<
-    "\nb = " << b << "\nN = " << n << "\ndt = " << (t_end - t_start) / (n - 1) << std::endl; */
+double impuls(int n, double *pU, double dt){
+    double U_max = pU[0];
+    double U_min = pU[0];
+    for (int i = 0; i < n; i++) {
+        if (U_max <= pU[i]) {
+            U_max = pU[i];
+        }
+        if (U_min >= pU[i]) {
+            U_min = pU[i];
+        }
+    }
+    double amount = U_min + 0.5 * (U_max - U_min);
+    double voltage_length = 0;
+    for (int i = 0; i < n; i++) {
+        if (pU[i] > amount) {
+            voltage_length += dt;
+        }
+    }
+    return voltage_length;
 }
 
 int write(char namefile[20], int n, double *pt, double *pU_in, double *pU_out){
@@ -166,14 +181,19 @@ int main(){
             from_U_in(n, U_in, t);
             from_U_out(n, U_out, U_in);
             from_table(n, t, U_in, U_out);
-            parameter(n);
 
             exit(fMain, symbol);
             break;
         case '2':
-            std::cout << "2" << std::endl;
+            if (n == 0) {
+                std::cout << "\nПока ещё нечего записать!" << std::endl;
+                exit(fMain, symbol);
+                break;
+            }else{
+                std::cout << "\nРасчёт импульса: " << impuls(n, U_out, (t[1] - t[0])) << std::endl;
 
-            exit(fMain, symbol);
+                exit(fMain, symbol);
+            }
             break;
         case '3':
             if (n == 0) {
@@ -182,11 +202,11 @@ int main(){
                 break;
             }else{
                 std::cout << "\nВведите название файла\n>> ";
-            std::cin >> namefile;
+                std::cin >> namefile;
 
-            write(namefile, n, t, U_in, U_out);
+                write(namefile, n, t, U_in, U_out);
 
-            exit(fMain, symbol);
+                exit(fMain, symbol);
             }
             break;
         case '4':
