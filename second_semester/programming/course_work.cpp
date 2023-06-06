@@ -39,9 +39,10 @@ void from_table(int n, double *pt, double *pU_in, double *pU_out){
     }
 }
 
-double impuls(int n, double *pU, double dt){
+void impuls(int n, double *pU, double dt, double *voltage_length){
     double U_max = pU[0];
     double U_min = pU[0];
+    *voltage_length = 0;
     for (int i = 0; i < n; i++) {
         if (U_max <= pU[i]) {
             U_max = pU[i];
@@ -51,13 +52,28 @@ double impuls(int n, double *pU, double dt){
         }
     }
     double amount = U_min + 0.5 * (U_max - U_min);
-    double voltage_length = 0;
     for (int i = 0; i < n; i++) {
         if (pU[i] > amount) {
-            voltage_length += dt;
+            *voltage_length += dt;
         }
     }
-    return voltage_length;
+}
+
+void parametr(int n, double *pt, double *pU_in, double *pU_out, double voltage_length){
+    double p = 1;
+    double eps = 0.01;
+    double par = 1000;
+    while (p > eps) {
+        from_t(n, pt);
+        from_U_in(n, pU_in, pt);
+        from_U_out(n, pU_out, pU_in);
+        impuls(n, pU_out, (pt[1] - pt[0]), &voltage_length);
+        p = fabs(par - voltage_length) / voltage_length;
+        std::cout << "n = " << n << "\nparametr = " << voltage_length <<
+        "\npogrechnost = " << p << std::endl;
+        par = voltage_length;
+        n = 2 * n;
+    }
 }
 
 int write(char namefile[20], int n, double *pt, double *pU_in, double *pU_out){
@@ -155,6 +171,7 @@ void exit(int &fMain, char &symbol){
 
 int main(){
     double t[N], U_in[N], U_out[N];
+    double voltage_length = 0.0;
     int n = 0;
     int fMain = 0;
     char namefile[20];
@@ -190,7 +207,10 @@ int main(){
                 exit(fMain, symbol);
                 break;
             }else{
-                std::cout << "\nРасчёт импульса: " << impuls(n, U_out, (t[1] - t[0])) << std::endl;
+                impuls(n, U_out, (t[1] - t[0]), &voltage_length);
+                std::cout << "\nРасчёт импульса: " << voltage_length << std::endl;
+
+                parametr(n, t, U_in, U_out, voltage_length);
 
                 exit(fMain, symbol);
             }
