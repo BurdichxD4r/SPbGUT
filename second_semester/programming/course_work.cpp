@@ -33,45 +33,42 @@ void from_U_out(int n, double *pU_out, double *pU_in){
 }
 
 void from_table(int n, double *pt, double *pU_in, double *pU_out){
-    std::cout << "\n№          t       U_in      U_out" << std::endl;
+    std::cout << "\n    №          t       U_in      U_out" << std::endl;
     for (int i = 0; i < n; i++) {
-        std::cout << i << std::setw(11) << pt[i] << std::setw(11) << pU_in[i] << std::setw(11) << pU_out[i] << std::endl;
+        std::cout << std::setw(5) << i << std::setw(11) << pt[i] << std::setw(11) << pU_in[i] << std::setw(11) << pU_out[i] << std::endl;
     }
 }
 
-void impuls(int n, double *pU, double dt, double *voltage_length){
-    double U_max = pU[0];
-    double U_min = pU[0];
-    *voltage_length = 0;
+void maxImpuls(int n, double *pU_in, double *pt, double *time){
+    double U_inMax = pU_in[0];
     for (int i = 0; i < n; i++) {
-        if (U_max <= pU[i]) {
-            U_max = pU[i];
-        }
-        if (U_min >= pU[i]) {
-            U_min = pU[i];
+        if (U_inMax <= pU_in[i]) {
+            U_inMax = pU_in[i];
         }
     }
-    double amount = U_min + 0.5 * (U_max - U_min);
     for (int i = 0; i < n; i++) {
-        if (pU[i] > amount) {
-            *voltage_length += dt;
+        if (pU_in[i] == U_inMax){
+            *time = pt[i];
+            break;
         }
     }
+    
 }
 
-void parametr(int n, double *pt, double *pU_in, double *pU_out, double voltage_length){
+void inaccuracy(double *pt, double *pU_in, double *time){
+    int n = 11;
     double p = 1;
-    double eps = 0.01;
-    double par = 1000;
+    double eps = 0.001;
+    double par = 100000;
+    std::cout << "\nРасчет погрешности с начального значения n = " << n << ":" <<std::endl;
     while (p > eps) {
         from_t(n, pt);
         from_U_in(n, pU_in, pt);
-        from_U_out(n, pU_out, pU_in);
-        impuls(n, pU_out, (pt[1] - pt[0]), &voltage_length);
-        p = fabs(par - voltage_length) / voltage_length;
-        std::cout << "n = " << n << "\nparametr = " << voltage_length <<
+        maxImpuls(n, pU_in, pt, time);
+        p = fabs(par - *time) / *time;
+        std::cout << "\nn = " << n << "\nparametr = " << *time <<
         "\npogrechnost = " << p << std::endl;
-        par = voltage_length;
+        par = *time;
         n = 2 * n;
     }
 }
@@ -171,7 +168,7 @@ void exit(int &fMain, char &symbol){
 
 int main(){
     double t[N], U_in[N], U_out[N];
-    double voltage_length = 0.0;
+    double time = 0.0;
     int n = 0;
     int fMain = 0;
     char namefile[20];
@@ -207,10 +204,10 @@ int main(){
                 exit(fMain, symbol);
                 break;
             }else{
-                impuls(n, U_out, (t[1] - t[0]), &voltage_length);
-                std::cout << "\nРасчёт импульса: " << voltage_length << std::endl;
+                maxImpuls(n, U_in, t, &time);
+                std::cout << "\nМомента времени, при котором U_in достигает максимума (для " << n << " точек): " << time << std::endl;
 
-                parametr(n, t, U_in, U_out, voltage_length);
+                inaccuracy(t, U_in, &time);
 
                 exit(fMain, symbol);
             }
