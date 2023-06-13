@@ -22,7 +22,7 @@ void from_U_in(int n, double *pU_in, double *pt){
 }
 
 void from_U_out(int n, double *pU_out, double *pU_in){
-    double U_out1 = 10.0, a = 2.0, b = 0.05;
+    double U_out1 = 10.0, a = 5.0, b = 0.05;
     for (int i = 0; i < n; i++) {
         if (pU_in[i] <= U_out1) {
             pU_out[i] = a;
